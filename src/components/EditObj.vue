@@ -18,22 +18,28 @@ export default {
       editobjmain.item.save = async function (e) {
       if (editobjmain.item.id > 0) {
         await axios.patch(dest+"/"+editobjmain.item.id, editobjmain.item).then(response=>{
-            console.log(response.data[editobjmain.$options.name].id)
+           e.onSaved(this,response);
         });
       } else {
         await axios.post(dest, editobjmain.item).then(response=>{
-            console.log(response.data[editobjmain.$options.name].id)
+            
             editobjmain.item.id = response.data[editobjmain.$options.name].id;
+            e.onSaved(this,response);
+            
         });
 
         
       }
-      e.onSaved(this);
+      
     };
 
-    editobjmain.item.delete = function (e) {
-    axios.delete(dest+"/"+editobjmain.item.id, editobjmain.item);
-      e.onDeleted(this);
+    editobjmain.item.delete = async function (e) {
+    await axios.delete(dest+"/"+editobjmain.item.id, editobjmain.item).then(response=>{
+          
+           e.onDeleted(this,response);
+           
+        });
+      
     };
 
     
