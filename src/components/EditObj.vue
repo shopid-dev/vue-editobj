@@ -40,7 +40,7 @@ export default {
     };
 
     editobjmain.item.delete = async function (e) {
-    await axios.delete(dest+"/"+editobjmain.item.id, editobjmain.item,apiconfig).then(response=>{
+    await axios.delete(dest+"/"+editobjmain.item.id,apiconfig).then(response=>{
           
            e.onDeleted(this,response);
            
