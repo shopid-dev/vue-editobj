@@ -12,7 +12,7 @@ export default {
   created: function () {
     var editobjmain = this;
 
-    var dest = editobjmain.$options.apiHost + '/' + editobjmain.$options.name;
+    var dest = editobjmain.$options.apiHost + '/' + editobjmain.$options.apiPath;
     
     var apiconfig = null;
     
@@ -29,7 +29,7 @@ export default {
       } else {
         await axios.post(dest, editobjmain.item,apiconfig).then(response=>{
             
-            editobjmain.item.id = response.data[editobjmain.$options.name].id;
+            editobjmain.item.id = response.data[editobjmain.$options.apiPath].id;
             e.onSaved(this,response);
             
         });
